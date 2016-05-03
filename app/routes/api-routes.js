@@ -24,7 +24,8 @@ module.exports = function(app){
 	// ---------------------------------------------------------------------------
 
 	app.get('/api/friends', function(req, res){
-		res.json(tableData);
+		
+		res.json(friendsData);
 	});
 
 	
@@ -40,16 +41,13 @@ module.exports = function(app){
 
 		// Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
 		// It will do this by sending out the value "true" have a table 
-		if(tableData.length < 5 ){
-			tableData.push(req.body);
+			
+			friendsData.push(req.body);
 			res.json(true); // KEY LINE
-		}
+		
 
-		// Or false if they don't have a table
-		else{
-			waitListData.push(req.body);
-			res.json(false); // KEY LINE
-		}
+		
+		
 
 	});
 
