@@ -191,28 +191,28 @@
     var currentURL = window.location.origin;
     $('#submitButton').on('click', function() {
         newfriend = {
-            "name" : $("#name").val(),
+            "name": $("#name").val(),
             "scores": [
-            $("input[type='radio'][name='optradio1']:checked").val(),
+                $("input[type='radio'][name='optradio1']:checked").val(),
 
-            $("input[type='radio'][name='optradio2']:checked").val(),
+                $("input[type='radio'][name='optradio2']:checked").val(),
 
-            $("input[type='radio'][name='optradio3']:checked").val(),
+                $("input[type='radio'][name='optradio3']:checked").val(),
 
-            $("input[type='radio'][name='optradio4']:checked").val(),
+                $("input[type='radio'][name='optradio4']:checked").val(),
 
-            $("input[type='radio'][name='optradio5']:checked").val(),
+                $("input[type='radio'][name='optradio5']:checked").val(),
 
 
-            $("input[type='radio'][name='optradio6']:checked").val(),
+                $("input[type='radio'][name='optradio6']:checked").val(),
 
-            $("input[type='radio'][name='optradio7']:checked").val(),
+                $("input[type='radio'][name='optradio7']:checked").val(),
 
-            $("input[type='radio'][name='optradio8']:checked").val(),
+                $("input[type='radio'][name='optradio8']:checked").val(),
 
-            $("input[type='radio'][name='optradio9']:checked").val(),
+                $("input[type='radio'][name='optradio9']:checked").val(),
 
-            $("input[type='radio'][name='optradio10']:checked").val()
+                $("input[type='radio'][name='optradio10']:checked").val()
             ]
 
         };
@@ -276,30 +276,41 @@
             for (var i = 0; i < friendsList.length - 1; i++) {
                 var potentialBestie = friendsList[i];
                 console.log(potentialBestie);
+
+                console.log("this is potential bestie name : " + potentialBestie.name);
                 var potentialBestieScores = potentialBestie.scores
-                console.log(potentialBestieScores);
+                console.log("these are potential bestie scores : " + potentialBestieScores);
                 var differences = 0
-                for (var i = 1; i < potentialBestieScores.length; i++) {
-                    differences = Math.abs(potentialBestie.scores[i] - newfriend.scores[i]);
-                }
+                console.log("this is starting differences : ");
+                for (var j = 0; j < potentialBestieScores.length; j++) {
+                    scoreDifferences = Math.abs(potentialBestie.scores[j] - newfriend.scores[j]);
+                    console.log(scoreDifferences);
 
-                if (bestieDifferences == null || differences < bestieDifferences) {
-                    bestie = potentialBestie;
-                    bestieDifferences = differences;
-                }
+                    differences += scoreDifferences;
 
-                if (differences == bestieDifferences) {
-                    bestie = potentialBestie;
-                    bestieDifferences = differences;
+
+
+
+
+
                 }
+                console.log("this is ending differences : " + differences);
+
+                if (bestieDifferences == null || differences <= bestieDifferences) {
+                    bestie = potentialBestie;
+                   bestieDifferences = differences;
+                    console.log("this is your new bestie " + bestie.name);
+                 }
+
+
             }
 
 
 
         });
-        console.log(bestie);
 
 
+        // Add compare function:: 
     }
     </script>
 </body>
