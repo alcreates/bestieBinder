@@ -183,11 +183,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script>
-    var newfriendStatus = false;
-    var newfriend;
-    var friendsList;
-    var bestie;
-    var bestieDifferences = null;
+   
+    
     var currentURL = window.location.origin;
     $('#submitButton').on('click', function() {
         newfriend = {
@@ -224,38 +221,7 @@
 
         $.post(currentURL + "/api/friends", newfriend, function(data) {
 
-            if (data == true) {
-                alert("Yay! your are added as a newfriend!");
-                newfriendStatus = true;
-                bestieBinder();
-
-            }
-            if (data == false) {
-                alert("Sorry not a friend");
-            }
-
-            $('#name').val('');
-            $("input[type='radio'][name='optradio1']:checked").val('')
-
-            $("input[type='radio'][name='optradio2']:checked").val('')
-
-            $("input[type='radio'][name='optradio3']:checked").val('')
-
-            $("input[type='radio'][name='optradio4']:checked").val('')
-
-            $("input[type='radio'][name='optradio5']:checked").val('')
-
-
-            $("input[type='radio'][name='optradio6']:checked").val('')
-
-            $("input[type='radio'][name='optradio7']:checked").val('')
-
-            $("input[type='radio'][name='optradio8']:checked").val('')
-
-            $("input[type='radio'][name='optradio9']:checked").val('')
-
-            $("input[type='radio'][name='optradio10']:checked").val('')
-
+           console.log(data.name);
 
 
 
@@ -272,40 +238,7 @@
 
         $.get(currentURL + '/api/friends', function(data) {
 
-            friendsList = data;
-            for (var i = 0; i < friendsList.length - 1; i++) {
-                var potentialBestie = friendsList[i];
-                console.log(potentialBestie);
-
-                console.log("this is potential bestie name : " + potentialBestie.name);
-                var potentialBestieScores = potentialBestie.scores
-                console.log("these are potential bestie scores : " + potentialBestieScores);
-                var differences = 0
-                console.log("this is starting differences : ");
-                for (var j = 0; j < potentialBestieScores.length; j++) {
-                    scoreDifferences = Math.abs(potentialBestie.scores[j] - newfriend.scores[j]);
-                    console.log(scoreDifferences);
-
-                    differences += scoreDifferences;
-
-
-
-
-
-
-                }
-                console.log("this is ending differences : " + differences);
-
-                if (bestieDifferences == null || differences <= bestieDifferences) {
-                    bestie = potentialBestie;
-                   bestieDifferences = differences;
-                    console.log("this is your new bestie " + bestie.name);
-                 }
-
-
-            }
-
-
+            console.log("This is your bestfriend : " + data);
 
         });
 

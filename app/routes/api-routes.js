@@ -22,10 +22,20 @@ module.exports = function(app){
 	// In each of the below cases when a user visits a link 
 	// (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table) 
 	// ---------------------------------------------------------------------------
+	
+	
 
 	app.get('/api/friends', function(req, res){
 		
-		res.json(friendsData);
+	
+
+    
+
+
+
+
+
+
 	});
 
 	
@@ -39,13 +49,66 @@ module.exports = function(app){
 
 	app.post('/api/friends', function(req, res){
 
-		// Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-		// It will do this by sending out the value "true" have a table 
-			
-			friendsData.push(req.body);
-			res.json(true); // KEY LINE
+
+	friendsData.push(req.body);
+	
 		
 
+
+		// Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
+		// It will do this by sending out the value "true" have a table 
+	var newfriend = req.body;
+    var friendsList;
+    var bestie;
+    var bestieDifferences = null;	
+
+    friendsList = friendsData;
+            for (var i = 0; i < friendsList.length - 1; i++) {
+                var potentialBestie = friendsList[i];
+                //console.log(potentialBestie);
+
+                //console.log("this is potential bestie name : " + potentialBestie.name);
+                var potentialBestieScores = potentialBestie.scores
+                console.log("these are potential bestie scores : " + potentialBestieScores);
+                var differences = 0
+                console.log("this is starting differences : ");
+                for (var j = 0; j < potentialBestieScores.length; j++) {
+                    scoreDifferences = Math.abs(potentialBestie.scores[j] - newfriend.scores[j]);
+                    console.log(scoreDifferences);
+
+                    differences += scoreDifferences;
+
+
+
+
+
+
+                }
+                console.log("this is ending differences : " + differences);
+
+                if (bestieDifferences == null || differences <= bestieDifferences) {
+                    bestie = potentialBestie;
+                   bestieDifferences = differences;
+                    console.log("this is your new bestie " + bestie.name);
+                 }
+
+
+            }
+
+			//res.json(true); // KEY LINE
+			res.json({
+				"name": bestie.name
+			});
+	
+
+
+
+
+
+
+
+
+			
 		
 		
 
