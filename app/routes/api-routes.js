@@ -50,7 +50,6 @@ module.exports = function(app){
 	app.post('/api/friends', function(req, res){
 
 
-	friendsData.push(req.body);
 	
 		
 
@@ -97,7 +96,9 @@ module.exports = function(app){
 
 			//res.json(true); // KEY LINE
 			res.json({
-				"name": bestie.name
+				"name": bestie.name,
+				"scores": bestie.scores,
+				"picture": bestie.picture
 			});
 	
 
